@@ -1,0 +1,2 @@
+module objeto_02 {
+}
