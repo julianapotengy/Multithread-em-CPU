@@ -1,20 +1,43 @@
 package main;
 
+import java.util.Random;
+
 public class ThreadProcessor extends Thread {
 
 	String nome;
 	int distanciaAtual;
 	int maxDistancia;
+	int qntPulos;
+	
+	int minDistPulo = 5;
+	int maxDistPulo = 20;
 	
 	public ThreadProcessor(String n, int md) {
 		nome = n;
 		distanciaAtual = 0;
 		maxDistancia = md;
+		qntPulos = 0;
 	}
 	
 	@Override
 	public void run() {
 		
-		System.out.println(nome + " " + maxDistancia);
+		while(distanciaAtual < maxDistancia)
+		{
+			// Pega um número aleatório entre minDistPulo e maxDistPulo e soma a distancia atual
+			Random rand = new Random();
+			int puloAleatorio = rand.nextInt((maxDistPulo - minDistPulo) + 1) + minDistPulo;
+			distanciaAtual += puloAleatorio;
+			
+			qntPulos++;
+			
+			// Checa se chegou na linha de chegada para enviar os textos
+			if(distanciaAtual >= maxDistancia)
+			{
+				System.out.println(nome + " alcançou a linha de chegada com " + qntPulos + " pulos");
+			}
+			else System.out.println("O " + nome + " pulou " + puloAleatorio + " cm e já percorreu "+ distanciaAtual + " cm");
+		}
+		
 	}
 }
