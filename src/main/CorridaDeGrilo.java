@@ -11,9 +11,27 @@ public class CorridaDeGrilo {
 	Random rand = new Random();
 	int nGrilos = rand.nextInt((maxGrilos - minGrilos) + 1) + minGrilos;
 	
+	int time1[] = new int[Math.round((nGrilos + 1) / 2)];
+	int time2[] = new int[nGrilos - time1.length];
+	
 	int maxDistancia = 100;
 	
 	public CorridaDeGrilo() {
+		
+		// Divide os times
+		for(int i = 0; i < nGrilos; i++)
+		{
+			if(i < time1.length)
+			{
+				time1[i] = i;
+				//System.out.println("Time 1: " + time1[i]);
+			}
+			else 
+			{
+				time2[i - time1.length] = i;
+				//System.out.println("Time 2: " + time2[i - time1.length]);
+			}
+		}
 		
 		// Cria as threads
 		ThreadProcessor threads[] = new ThreadProcessor[nGrilos];
