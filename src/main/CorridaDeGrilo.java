@@ -2,7 +2,8 @@ package main;
 
 import java.util.Random;
 
-public class CorridaDeGrilo {
+public class CorridaDeGrilo 
+{
 
 	int minGrilos = 2;
 	int maxGrilos = 5;
@@ -17,7 +18,8 @@ public class CorridaDeGrilo {
 	int maxDistancia = 100;
 	int nPosicoes = 0;
 	
-	public CorridaDeGrilo() {
+	public CorridaDeGrilo() 
+	{
 		
 		// Divide os times
 		for(int i = 0; i < nGrilos; i++)
@@ -42,6 +44,57 @@ public class CorridaDeGrilo {
 			threads[i] = new ThreadProcessor(nomeGrilo, maxDistancia, this);
 			threads[i].start();
 		}
+		
+		for (int i = 0; i < threads.length; i++) 
+		{
+			try {
+				threads[i].join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		int qntPulosTime = 0;
+		int qntDistanciaTime = 0;
+		
+		for(int i = 0; i < time1.length; i++)
+		{
+			qntPulosTime += threads[i].getQntPulos();
+			qntDistanciaTime += threads[i].getDistanciaAtual();
+		}
+		
+		System.out.println("Time 1: Total de Pulos: " + qntPulosTime + " - Distância Percorrida: " + qntDistanciaTime);
+		
+		qntPulosTime = 0;
+		qntDistanciaTime = 0;
+		
+		for(int i = 0; i < time2.length; i++)
+		{
+			qntPulosTime += threads[time2[i]].getQntPulos();
+			qntDistanciaTime += threads[time2[i]].getDistanciaAtual();
+		}
+		
+		System.out.println("Time 2: Total de Pulos: " + qntPulosTime + " - Distância Percorrida: " + qntDistanciaTime);
+		
+		for (int i = 0; i < nGrilos; i++) 
+		{
+			if(threads[i].posicao == 1) 
+			{
+				for (int j = 0; j < nGrilos; j++) 
+				{
+					if (time1[j] == threads[i].id) 
+					{
+						System.out.println("Time 1 foi o vencedor");
+						break;
+					} else if(time1[j] == threads[i].id) 
+					{
+						System.out.println("Time 2 foi o vencedor");
+						break;
+					}
+				}
+			}
+		}
 	}
 	
 	public int getPosicoes() 
@@ -49,6 +102,7 @@ public class CorridaDeGrilo {
 		nPosicoes++;
 		return nPosicoes;
 	}
+	
 	
 	/*
 	for (int i = 0; i < threads.length; i++) 

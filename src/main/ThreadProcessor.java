@@ -11,12 +11,14 @@ public class ThreadProcessor extends Thread {
 	int maxDistancia;
 	int qntPulos;
 	int posicao;
+	int id;
 	
 	int minDistPulo = 5;
 	int maxDistPulo = 20;
 	
 	public ThreadProcessor(String n, int md, CorridaDeGrilo c) {
 		nome = n;
+		this.id = id;
 		distanciaAtual = 0;
 		maxDistancia = md;
 		qntPulos = 0;
@@ -43,6 +45,15 @@ public class ThreadProcessor extends Thread {
 			}
 			else System.out.println("O " + nome + " pulou " + puloAleatorio + " cm e já percorreu "+ distanciaAtual + " cm");
 		}
-		
+	}
+	
+	public int getQntPulos() 
+	{
+		return qntPulos;
+	}
+	
+	public int getDistanciaAtual() 
+	{
+		return distanciaAtual;
 	}
 }
