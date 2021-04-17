@@ -41,7 +41,7 @@ public class CorridaDeGrilo
 		
 		for(int i = 0; i < nGrilos; i++) {
 			String nomeGrilo = "Grilo_0" + (i + 1);
-			threads[i] = new ThreadProcessor(nomeGrilo, maxDistancia, this);
+			threads[i] = new ThreadProcessor(nomeGrilo, i, maxDistancia, this);
 			threads[i].start();
 		}
 		
@@ -87,7 +87,7 @@ public class CorridaDeGrilo
 					{
 						System.out.println("Time 1 foi o vencedor");
 						break;
-					} else if(time1[j] == threads[i].id) 
+					} else if(time2[j] == threads[i].id) 
 					{
 						System.out.println("Time 2 foi o vencedor");
 						break;
