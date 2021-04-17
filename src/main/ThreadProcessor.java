@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class ThreadProcessor extends Thread {
 
+	CorridaDeGrilo corrida;
+	
 	String nome;
 	int distanciaAtual;
 	int maxDistancia;
@@ -12,11 +14,12 @@ public class ThreadProcessor extends Thread {
 	int minDistPulo = 5;
 	int maxDistPulo = 20;
 	
-	public ThreadProcessor(String n, int md) {
+	public ThreadProcessor(String n, int md, CorridaDeGrilo c) {
 		nome = n;
 		distanciaAtual = 0;
 		maxDistancia = md;
 		qntPulos = 0;
+		corrida = c;
 	}
 	
 	@Override
