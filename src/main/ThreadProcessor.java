@@ -10,6 +10,7 @@ public class ThreadProcessor extends Thread {
 	int distanciaAtual;
 	int maxDistancia;
 	int qntPulos;
+	int posicao;
 	
 	int minDistPulo = 5;
 	int maxDistPulo = 20;
@@ -37,6 +38,7 @@ public class ThreadProcessor extends Thread {
 			// Checa se chegou na linha de chegada para enviar os textos
 			if(distanciaAtual >= maxDistancia)
 			{
+				posicao = corrida.getPosicoes();
 				System.out.println(nome + " alcançou a linha de chegada com " + qntPulos + " pulos");
 			}
 			else System.out.println("O " + nome + " pulou " + puloAleatorio + " cm e já percorreu "+ distanciaAtual + " cm");

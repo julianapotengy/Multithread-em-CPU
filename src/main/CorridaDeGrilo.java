@@ -15,6 +15,7 @@ public class CorridaDeGrilo {
 	int time2[] = new int[nGrilos - time1.length];
 	
 	int maxDistancia = 100;
+	int nPosicoes = 0;
 	
 	public CorridaDeGrilo() {
 		
@@ -41,7 +42,12 @@ public class CorridaDeGrilo {
 			threads[i] = new ThreadProcessor(nomeGrilo, maxDistancia, this);
 			threads[i].start();
 		}
-		
+	}
+	
+	public int getPosicoes() 
+	{
+		nPosicoes++;
+		return nPosicoes;
 	}
 	
 	/*
